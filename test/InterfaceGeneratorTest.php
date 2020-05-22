@@ -14,7 +14,7 @@ class InterfaceGeneratorTest extends TestCase
 
     /**
      * @return MethodGenerator[]
-     * ½     */
+     */
     private function generateMethods(): array
     {
         $arrayOfMethods = [];

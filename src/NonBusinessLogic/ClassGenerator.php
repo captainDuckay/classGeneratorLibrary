@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace NonBusinessLogic;
 
+use NonBusinessLogic\Traits\AbstractTrait;
+
 /**
  * Class InterfaceGenerator
  * @package NonBusinessLogic
  */
 class ClassGenerator extends GenericClassGenerator
 {
+    use AbstractTrait;
+
     /**
      * InterfaceGenerator constructor.
      * @param string $name
@@ -19,6 +23,7 @@ class ClassGenerator extends GenericClassGenerator
      * @param MethodGenerator[] $methods
      * @param string $extending
      * @param array $implementations
+     * @param bool $isAbstract
      */
     public function __construct(
         string $name,
@@ -27,7 +32,8 @@ class ClassGenerator extends GenericClassGenerator
         bool $isStatic = false,
         array $methods = [],
         string $extending = '',
-        array $implementations = []
+        array $implementations = [],
+        bool $isAbstract = false
     ) {
         parent::__construct(
             $name,
@@ -38,6 +44,8 @@ class ClassGenerator extends GenericClassGenerator
             $extending,
             $implementations
         );
+
+        $this->setAbstract($isAbstract);
     }
 
     /**
@@ -45,13 +53,14 @@ class ClassGenerator extends GenericClassGenerator
      */
     public function generateFileContent(): string
     {
-        $methodsString = function (): string {
-            $returnString = '';
-            foreach ($this->getMethods() as $method) {
-                $returnString .= $method->generateGenericClassString() . PHP_EOL;
+        $that =& $this;
+        $methodsString = (function () use ($that): string {
+            $string = '';
+            foreach ($that->getMethods() as $method) {
+                $string .= $method->generateGenericClassString() . PHP_EOL;
             }
-            return $returnString;
-        };
+            return $string;
+        })();
 
         return <<<EOD
 <?php
@@ -61,7 +70,7 @@ declare(strict_types=1);
  * Class {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
+{$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
 	{$methodsString}
 }
