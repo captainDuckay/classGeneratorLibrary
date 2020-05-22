@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -11,36 +12,35 @@ namespace NonBusinessLogic\Traits;
  */
 trait NamespaceTrait
 {
-	/** @var string */
-	private string $namespace;
+    /** @var string */
+    private string $namespace;
 
-	/**
-	 * @return string
-	 */
-	public function getNamespace(): string
-	{
-		return $this->namespace;
-	}
+    /**
+     * @return string
+     */
+    public function getNamespace(): string
+    {
+        return $this->namespace;
+    }
 
-	/**
-	 * @param string $namespace
-	 * @return NamespaceTrait
-	 */
-	public function setNamespace(string $namespace): NamespaceTrait
-	{
-		$this->namespace = $namespace;
-		return $this;
-	}
+    /**
+     * @param string $namespace
+     */
+    public function setNamespace(string $namespace): void
+    {
+        $this->namespace = $namespace;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function generateNamespacePackage(): string
-	{
-		if ($this->getNamespace() != '')
-			return " * @package {$this->getNamespace()}";
-		else
-			return '';
-	}
+    /**
+     * @return string
+     */
+    public function generateNamespacePackage(): string
+    {
+        if ($this->getNamespace() != '') {
+            return " * @package {$this->getNamespace()}";
+        } else {
+            return '';
+        }
+    }
 
 }

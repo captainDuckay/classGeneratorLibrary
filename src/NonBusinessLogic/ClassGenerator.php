@@ -8,7 +8,7 @@ namespace NonBusinessLogic;
  * Class InterfaceGenerator
  * @package NonBusinessLogic
  */
-class InterfaceGenerator extends GenericClassGenerator
+class ClassGenerator extends GenericClassGenerator
 {
     /**
      * InterfaceGenerator constructor.
@@ -45,24 +45,23 @@ class InterfaceGenerator extends GenericClassGenerator
      */
     public function generateFileContent(): string
     {
-        $that =& $this;
-        $methodsString = (function () use ($that): string {
-            $string = '';
-            foreach ($that->getMethods() as $method) {
-                $string .= $method->generateInterfaceString() . ';' . PHP_EOL;
+        $methodsString = function (): string {
+            $returnString = '';
+            foreach ($this->getMethods() as $method) {
+                $returnString .= $method->generateGenericClassString() . PHP_EOL;
             }
-            return $string;
-        })();
+            return $returnString;
+        };
 
         return <<<EOD
 <?php
 declare(strict_types=1);
 
 /**
- * Interface {$this->getName()}
+ * Class {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-interface {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
+class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
 	{$methodsString}
 }

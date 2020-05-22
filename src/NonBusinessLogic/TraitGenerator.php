@@ -2,32 +2,38 @@
 
 declare(strict_types=1);
 
+
 namespace NonBusinessLogic;
 
+
+use NonBusinessLogic\Traits\ExtendsTrait;
+use NonBusinessLogic\Traits\ImplementsTrait;
+use NonBusinessLogic\Traits\NamespaceTrait;
+use NonBusinessLogic\Traits\PathTrait;
+use NonBusinessLogic\Traits\ReturnType;
+use NonBusinessLogic\Traits\VisibilityTrait;
+
 /**
- * Class InterfaceGenerator
+ * Class TraitGenerator
  * @package NonBusinessLogic
  */
-class InterfaceGenerator extends GenericClassGenerator
+class TraitGenerator extends GenericClassGenerator
 {
+
     /**
-     * InterfaceGenerator constructor.
+     * TraitGenerator constructor.
      * @param string $name
      * @param string $path
      * @param string $namespace
      * @param bool $isStatic
      * @param MethodGenerator[] $methods
-     * @param string $extending
-     * @param array $implementations
      */
     public function __construct(
         string $name,
         string $path = '/',
         string $namespace = '/',
         bool $isStatic = false,
-        array $methods = [],
-        string $extending = '',
-        array $implementations = []
+        array $methods = []
     ) {
         parent::__construct(
             $name,
@@ -35,8 +41,8 @@ class InterfaceGenerator extends GenericClassGenerator
             $namespace,
             $isStatic,
             $methods,
-            $extending,
-            $implementations
+            '',
+            []
         );
     }
 
@@ -45,24 +51,23 @@ class InterfaceGenerator extends GenericClassGenerator
      */
     public function generateFileContent(): string
     {
-        $that =& $this;
-        $methodsString = (function () use ($that): string {
-            $string = '';
-            foreach ($that->getMethods() as $method) {
-                $string .= $method->generateInterfaceString() . ';' . PHP_EOL;
+        $methodsString = function (): string {
+            $returnString = '';
+            foreach ($this->getMethods() as $method) {
+                $returnString .= $method->generateGenericClassString() . PHP_EOL;
             }
-            return $string;
-        })();
+            return $returnString;
+        };
 
         return <<<EOD
 <?php
 declare(strict_types=1);
 
 /**
- * Interface {$this->getName()}
+ * Trait {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-interface {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
+class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
 	{$methodsString}
 }

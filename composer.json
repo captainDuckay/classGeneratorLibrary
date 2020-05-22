@@ -1,0 +1,25 @@
+{
+  "name": "NickiBoOtte/classGeneratorLibrary",
+  "description": "A library that are used for class generation in PHP.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicki Bo Otte",
+      "email": "duckay@live.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    },
+    "psr-0": {
+      "": "src/"
+    }
+  },
+  "require": {
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.1.4"
+  }
+}

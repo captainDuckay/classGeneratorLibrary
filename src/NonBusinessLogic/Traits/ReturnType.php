@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -12,35 +13,34 @@ namespace NonBusinessLogic\Traits;
 trait ReturnType
 {
 
-	/** @var string */
-	private string $returnType;
+    /** @var string */
+    private string $returnType;
 
-	/**
-	 * @return string
-	 */
-	public function getReturnType(): string
-	{
-		return $this->returnType;
-	}
+    /**
+     * @return string
+     */
+    public function getReturnType(): string
+    {
+        return $this->returnType;
+    }
 
-	/**
-	 * @param string $returnType
-	 * @return ReturnType
-	 */
-	public function setReturnType(string $returnType): ReturnType
-	{
-		$this->returnType = $returnType;
-		return $this;
-	}
+    /**
+     * @param string $returnType
+     */
+    public function setReturnType(string $returnType): void
+    {
+        $this->returnType = $returnType;
+    }
 
-	/**
-	 * @return string
-	 */
-	private function generateReturnTypeString(): string
-	{
-		if ($this->getReturnType() == '')
-			return '';
-		else
-			return ": {$this->getReturnType()}";
-	}
+    /**
+     * @return string
+     */
+    private function generateReturnTypeString(): string
+    {
+        if ($this->getReturnType() == '') {
+            return '';
+        } else {
+            return ": {$this->getReturnType()}";
+        }
+    }
 }

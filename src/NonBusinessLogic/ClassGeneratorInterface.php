@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -12,9 +13,9 @@ namespace NonBusinessLogic;
 interface ClassGeneratorInterface
 {
 
-	/**
-	 * @return string
-	 */
-	public function generateFileContent():string;
+    /**
+     * @return string
+     */
+    public function generateFileContent(): string;
 
 }
