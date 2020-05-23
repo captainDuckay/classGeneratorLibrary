@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace NonBusinessLogic\Traits;
+namespace classGeneratorLibrary\NonBusinessLogic\Traits;
 
 
 /**

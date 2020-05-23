@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 
-namespace NonBusinessLogic;
+namespace classGeneratorLibrary\NonBusinessLogic;
 
 
-use NonBusinessLogic\Traits\ExtendsTrait;
-use NonBusinessLogic\Traits\ImplementsTrait;
-use NonBusinessLogic\Traits\NamespaceTrait;
-use NonBusinessLogic\Traits\PathTrait;
-use NonBusinessLogic\Traits\ReturnType;
-use NonBusinessLogic\Traits\VisibilityTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\ExtendsTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\ImplementsTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\NamespaceTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\PathTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\ReturnType;
+use classGeneratorLibrary\NonBusinessLogic\Traits\VisibilityTrait;
 
 /**
  * Class GenericClassGenerator
@@ -77,7 +77,6 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface
      * @param string $name
      * @param string $path
      * @param string $namespace
-     * @param bool $isStatic
      * @param array $methods
      * @param string $extending
      * @param string[] $implementations
@@ -86,12 +85,10 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface
         string $name,
         string $path,
         string $namespace,
-        bool $isStatic,
         array $methods,
         string $extending,
         array $implementations
     ) {
-        $this->setStatic($isStatic);
         $this->setName($name);
         $this->setMethods($methods);
         $this->setNamespace($namespace);

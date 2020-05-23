@@ -1,7 +1,7 @@
 <?php
 
 
-namespace NonBusinessLogic\Traits;
+namespace classGeneratorLibrary\NonBusinessLogic\Traits;
 
 
 trait AbstractTrait

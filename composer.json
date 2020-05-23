@@ -2,7 +2,7 @@
   "name": "captainduckay/class-generator-library",
   "description": "A library that are used for class generation in PHP.",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     {
       "name": "Nicki Bo Otte",
@@ -11,10 +11,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "classGeneratorLibrary": "src/"
     },
     "psr-0": {
-      "": "src/"
+      "classGeneratorLibrary": "src/"
     }
   },
   "require": {

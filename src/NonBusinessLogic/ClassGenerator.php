@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace NonBusinessLogic;
+namespace classGeneratorLibrary\NonBusinessLogic;
 
-use NonBusinessLogic\Traits\AbstractTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\AbstractTrait;
 
 /**
  * Class InterfaceGenerator
@@ -12,57 +12,54 @@ use NonBusinessLogic\Traits\AbstractTrait;
  */
 class ClassGenerator extends GenericClassGenerator
 {
-    use AbstractTrait;
+	use AbstractTrait;
 
-    /**
-     * InterfaceGenerator constructor.
-     * @param string $name
-     * @param string $path
-     * @param string $namespace
-     * @param bool $isStatic
-     * @param MethodGenerator[] $methods
-     * @param string $extending
-     * @param array $implementations
-     * @param bool $isAbstract
-     */
-    public function __construct(
-        string $name,
-        string $path = '/',
-        string $namespace = '/',
-        bool $isStatic = false,
-        array $methods = [],
-        string $extending = '',
-        array $implementations = [],
-        bool $isAbstract = false
-    ) {
-        parent::__construct(
-            $name,
-            $path,
-            $namespace,
-            $isStatic,
-            $methods,
-            $extending,
-            $implementations
-        );
+	/**
+	 * InterfaceGenerator constructor.
+	 * @param string $name
+	 * @param string $path
+	 * @param string $namespace
+	 * @param MethodGenerator[] $methods
+	 * @param string $extending
+	 * @param array $implementations
+	 * @param bool $isAbstract
+	 */
+	public function __construct(
+		string $name,
+		string $path = '/',
+		string $namespace = '/',
+		array $methods = [],
+		string $extending = '',
+		array $implementations = [],
+		bool $isAbstract = false
+	) {
+		parent::__construct(
+			$name,
+			$path,
+			$namespace,
+			$methods,
+			$extending,
+			$implementations
+		);
 
-        $this->setAbstract($isAbstract);
-    }
+		$this->setAbstract($isAbstract);
+	}
 
-    /**
-     * @inheritDoc
-     */
-    public function generateFileContent(): string
-    {
-        $that =& $this;
-        $methodsString = (function () use ($that): string {
-            $string = '';
-            foreach ($that->getMethods() as $method) {
-                $string .= $method->generateGenericClassString() . PHP_EOL;
-            }
-            return $string;
-        })();
+	/**
+	 * @inheritDoc
+	 */
+	public function generateFileContent(): string
+	{
+		$that =& $this;
+		$methodsString = (function () use ($that): string {
+			$string = '';
+			foreach ($that->getMethods() as $method) {
+				$string .= $method->generateGenericClassString() . PHP_EOL;
+			}
+			return $string;
+		})();
 
-        return <<<EOD
+		return <<<EOD
 <?php
 declare(strict_types=1);
 
@@ -70,10 +67,11 @@ declare(strict_types=1);
  * Class {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-{$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
+{$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString(
+		)} {$this->generateImplementsString()}
 {
 	{$methodsString}
 }
 EOD;
-    }
+	}
 }

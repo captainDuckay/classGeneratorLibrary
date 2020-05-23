@@ -3,12 +3,13 @@
 declare(strict_types=1);
 
 
-namespace NonBusinessLogic;
+namespace classGeneratorLibrary\NonBusinessLogic;
 
 
-use NonBusinessLogic\Traits\ContentsTrait;
-use NonBusinessLogic\Traits\ReturnType;
-use NonBusinessLogic\Traits\VisibilityTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\ContentsTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\ReturnType;
+use classGeneratorLibrary\NonBusinessLogic\Traits\StaticTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\VisibilityTrait;
 
 /**
  * Class MethodGenerator
@@ -17,75 +18,76 @@ use NonBusinessLogic\Traits\VisibilityTrait;
 class MethodGenerator
 {
 
-    use VisibilityTrait;
-    use ReturnType;
-    use ContentsTrait;
+	use VisibilityTrait;
+	use StaticTrait;
+	use ReturnType;
+	use ContentsTrait;
 
-    /** @var string */
-    private string $name;
+	/** @var string */
+	private string $name;
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		return $this->name;
+	}
 
-    /**
-     * @param string $name
-     * @return MethodGenerator
-     */
-    protected function setName(string $name): MethodGenerator
-    {
-        $this->name = $name;
-        return $this;
-    }
+	/**
+	 * @param string $name
+	 * @return MethodGenerator
+	 */
+	protected function setName(string $name): MethodGenerator
+	{
+		$this->name = $name;
+		return $this;
+	}
 
-    /**
-     * MethodGenerator constructor.
-     * @param string $visibilityState
-     * @param bool $isStatic
-     * @param string $name
-     * @param string $content
-     * @param string $returnTypeName
-     */
-    public function __construct(
-        string $visibilityState,
-        bool $isStatic,
-        string $name,
-        string $returnTypeName,
-        string $content = ''
-    ) {
-        $this->setVisibilityState($visibilityState);
-        $this->setStatic($isStatic);
-        $this->setName($name);
-        $this->setReturnType($returnTypeName);
-        $this->setContents($content);
-    }
+	/**
+	 * MethodGenerator constructor.
+	 * @param string $visibilityState
+	 * @param bool $isStatic
+	 * @param string $name
+	 * @param string $content
+	 * @param string $returnTypeName
+	 */
+	public function __construct(
+		string $visibilityState,
+		bool $isStatic,
+		string $name,
+		string $returnTypeName,
+		string $content = ''
+	) {
+		$this->setVisibilityState($visibilityState);
+		$this->setStatic($isStatic);
+		$this->setName($name);
+		$this->setReturnType($returnTypeName);
+		$this->setContents($content);
+	}
 
-    /**
-     * @return string
-     */
-    public function generateGenericClassString(): string
-    {
-        return <<<EOD
+	/**
+	 * @return string
+	 */
+	public function generateGenericClassString(): string
+	{
+		return <<<EOD
 {$this->generateInterfaceString()}{
 
 	{$this->getContents()}
 
 }
 EOD;
-    }
+	}
 
-    /**
-     * @return string
-     */
-    public function generateInterfaceString(): string
-    {
-        return <<<EOD
+	/**
+	 * @return string
+	 */
+	public function generateInterfaceString(): string
+	{
+		return <<<EOD
 {$this->getVisibilityState()} {$this->generateIsStaticString()} function {$this->getName(
-        )}(){$this->generateReturnTypeString()}
+		)}(){$this->generateReturnTypeString()}
 EOD;
-    }
+	}
 }
