@@ -11,10 +11,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "classGeneratorLibrary": "src/"
+      "classGeneratorLibrary\\": "src/"
     },
     "psr-0": {
-      "classGeneratorLibrary": "src/"
+      "classGeneratorLibrary\\": "src/"
     }
   },
   "require": {
