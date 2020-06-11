@@ -77,6 +77,7 @@ trait ReturnType
 				return 'int';
 			case 'FLOAT':
 			case 'DOUBLE':
+			case 'DECIMAL':
 				return 'float';
 			case 'TINYINT':
 			case 'BIT':
