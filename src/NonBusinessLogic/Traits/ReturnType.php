@@ -43,4 +43,47 @@ trait ReturnType
             return ": {$this->getReturnType()}";
         }
     }
+
+	public function getConvertedReturnType(): string
+	{
+
+		switch (strtoupper($this->getReturnType())) {
+			//string
+			case 'CHAR':
+			case 'VARCHAR':
+			case 'BINARY':
+			case 'VARBINARY':
+			case 'TINYBLOB':
+			case 'BLOB':
+			case 'MEDIUMBLOB':
+			case 'LONGBLOB':
+			case 'TINYTEXT':
+			case 'TEXT':
+			case 'MEDIUMTEXT':
+			case 'LONGTEXT':
+			case 'ENUM':
+			case 'SET':
+			case 'DATE':
+			case 'TIME':
+			case 'DATETIME':
+			case 'TIMESTAMP':
+			case 'YEAR':
+			case 'JSON':
+				return 'string';
+			case 'SMALLINT':
+			case 'MEDIUMINT':
+			case 'INT':
+			case 'BIGINT':
+				return 'int';
+			case 'FLOAT':
+			case 'DOUBLE':
+				return 'float';
+			case 'TINYINT':
+			case 'BIT':
+				return 'bool';
+			default:
+				die($this->getReturnType() . " isn't mapped");
+		}
+
+	}
 }

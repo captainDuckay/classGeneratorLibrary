@@ -38,9 +38,21 @@ class PropertyClass
 	 */
 	public function generateGenericPropertyString(): string
 	{
-		return <<<EOD
-	{$this->getVisibilityState()} {$this->getReturnType()} {$this->getName()};
-EOD;
+		$ucName = ucfirst($this->getName());
+
+		return <<<string
+    private {$column->getConvertedDataType()} {$column->getName()};
+
+    public function get{$ucName}():{$column->getConvertedDataType()} {
+        return \$this->{$column->getName()};    
+    }
+    
+    public function set{$ucName}():{$column->getConvertedDataType()} {
+        return \$this->{$column->getName()};    
+    }
+string;
+
+
 	}
 
 }
