@@ -44,6 +44,16 @@ class ClassGenerator extends GenericClassGenerator {
 		$this->setAbstract( $isAbstract );
 	}
 
+	private function generateAbstractName(): string {
+
+		if( $this->isAbstract() ) {
+			return 'Abstract' . ucfirst( $this->getName() );
+		}
+		else {
+			return $this->getName();
+		}
+	}
+
 	/**
 	 * @inheritDoc
 	 */
@@ -59,7 +69,7 @@ declare(strict_types=1);
  * Class {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-{$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString(
+{$this->generateAbstractString()} class {$this->generateAbstractName()} {$this->generateExtendsString(
 		)} {$this->generateImplementsString()}
 {
 	{$this->generateUsesString()}
