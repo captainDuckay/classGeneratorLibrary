@@ -41,14 +41,14 @@ class PropertyClass
 		$ucName = ucfirst($this->getName());
 
 		return <<<string
-    private {$column->getConvertedDataType()} {$column->getName()};
+    private {$this->getConvertedReturnType()} {$this->getName()};
 
-    public function get{$ucName}():{$column->getConvertedDataType()} {
-        return \$this->{$column->getName()};    
+    public function get{$ucName}():{$this->getConvertedReturnType()} {
+        return \$this->{$this->getName()};    
     }
     
-    public function set{$ucName}():{$column->getConvertedDataType()} {
-        return \$this->{$column->getName()};    
+    public function set{$ucName}():{$this->getConvertedReturnType()} {
+        return \$this->{$this->getName()};    
     }
 string;
 

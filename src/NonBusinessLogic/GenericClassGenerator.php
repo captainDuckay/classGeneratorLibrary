@@ -154,8 +154,8 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 	public function generatePropertyString(): string {
 
 		$returnString = '';
-		foreach( $this->getMethods() as $method ) {
-			$returnString .= $method->generateGenericClassString() . PHP_EOL;
+		foreach( $this->getProperties() as $method ) {
+			$returnString .= $method->generateGenericPropertyString() . PHP_EOL;
 		}
 		return $returnString;
 
