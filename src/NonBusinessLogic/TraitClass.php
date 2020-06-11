@@ -23,8 +23,10 @@ class TraitClass extends GenericClassGenerator {
 		array $methods,
 		string $extending,
 		array $implementations,
-		array $properties
+		array $properties,
+		array $uses
 	) {
+
 		parent::__construct(
 			$name,
 			$path,
@@ -32,7 +34,8 @@ class TraitClass extends GenericClassGenerator {
 			$methods,
 			$extending,
 			$implementations,
-			$properties
+			$properties,
+			$uses
 		);
 	}
 

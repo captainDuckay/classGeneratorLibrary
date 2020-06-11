@@ -27,7 +27,8 @@ class ClassGenerator extends GenericClassGenerator {
 		string $extending,
 		array $implementations,
 		array $properties,
-		bool $isAbstract
+		bool $isAbstract,
+		array $uses
 	) {
 
 		parent::__construct(
@@ -37,7 +38,8 @@ class ClassGenerator extends GenericClassGenerator {
 			$methods,
 			$extending,
 			$implementations,
-			$properties
+			$properties,
+			$uses
 		);
 		$this->setAbstract( $isAbstract );
 	}

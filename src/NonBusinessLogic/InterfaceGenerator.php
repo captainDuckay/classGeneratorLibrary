@@ -8,44 +8,46 @@ namespace classGeneratorLibrary\NonBusinessLogic;
  * Class InterfaceGenerator
  * @package NonBusinessLogic
  */
-class InterfaceGenerator extends GenericClassGenerator
-{
+class InterfaceGenerator extends GenericClassGenerator {
+
 	/**
 	 * InterfaceGenerator constructor.
-	 * @param string        $name
-	 * @param string        $path
-	 * @param string        $namespace
-	 * @param MethodClass[] $methods
-	 * @param string        $extending
-	 * @param array         $implementations
+	 *
+	 * @inheritDoc
 	 */
 	public function __construct(
 		string $name,
-		string $path = '/',
-		string $namespace = '/',
-		array $methods = [],
-		string $extending = '',
-		array $implementations = []
+		string $path,
+		string $namespace,
+		array $methods,
+		string $extending,
+		array $implementations,
+		array $properties,
+		array $uses
 	) {
+
 		parent::__construct(
 			$name,
 			$path,
 			$namespace,
 			$methods,
 			$extending,
-			$implementations
+			$implementations,
+			$properties,
+			$uses
 		);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function generateFileContent(): string
-	{
+	public function generateFileContent(): string {
+
 		$that =& $this;
-		$methodsString = (function () use ($that): string {
+		$methodsString = (function() use ( $that ): string {
+
 			$string = '';
-			foreach ($that->getMethods() as $method) {
+			foreach( $that->getMethods() as $method ) {
 				$string .= $method->generateInterfaceString() . ';' . PHP_EOL;
 			}
 			return $string;

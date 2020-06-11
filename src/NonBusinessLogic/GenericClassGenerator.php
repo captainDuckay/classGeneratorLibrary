@@ -10,7 +10,6 @@ use classGeneratorLibrary\NonBusinessLogic\Traits\ExtendsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\ImplementsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\NamespaceTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\PathTrait;
-use classGeneratorLibrary\NonBusinessLogic\Traits\UseTrait;
 
 /**
  * Class GenericClassGenerator
@@ -137,6 +136,7 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 	 * @param string          $extending
 	 * @param string[]        $implementations
 	 * @param PropertyClass[] $properties
+	 * @param UseClass[]      $uses
 	 */
 	public function __construct(
 		string $name,
@@ -145,7 +145,8 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 		array $methods,
 		string $extending,
 		array $implementations,
-		array $properties
+		array $properties,
+		array $uses
 	) {
 
 		$this->setName( $name );
@@ -155,6 +156,7 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 		$this->setExtension( $extending );
 		$this->setImplementations( $implementations );
 		$this->setProperties( $properties );
+		$this->setUses( $uses );
 	}
 
 	/**
