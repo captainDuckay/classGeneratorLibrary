@@ -3,6 +3,8 @@
 
 namespace classGeneratorLibrary\NonBusinessLogic\Traits;
 
+use classGeneratorLibrary\NonBusinessLogic\ParameterClass;
+
 trait MethodTrait {
 
 	use VisibilityTrait;
@@ -12,6 +14,25 @@ trait MethodTrait {
 
 	/** @var string */
 	private string $name;
+
+	/** @var ParameterClass[] */
+	private array $parameters;
+
+	/**
+	 * @return ParameterClass[]
+	 */
+	public function getParameters(): array {
+
+		return $this->parameters;
+	}
+
+	/**
+	 * @param ParameterClass[] $parameters
+	 */
+	public function setParameters( array $parameters ): void {
+
+		$this->parameters = $parameters;
+	}
 
 	/**
 	 * @return string
