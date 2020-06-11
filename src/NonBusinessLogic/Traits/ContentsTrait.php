@@ -5,9 +5,6 @@ declare(strict_types=1);
 
 namespace classGeneratorLibrary\NonBusinessLogic\Traits;
 
-
-use NonBusinessLogic\MethodGenerator;
-
 /**
  * Trait ContentsTrait
  * @package NonBusinessLogic\Traits
