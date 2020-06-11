@@ -21,12 +21,10 @@ trait PropertyTrait {
 
 	/**
 	 * @param string $name
-	 * @return PropertyTrait
 	 */
-	protected function setName(string $name): PropertyTrait
+	protected function setName(string $name): void
 	{
 		$this->name = $name;
-		return $this;
 	}
 
 }

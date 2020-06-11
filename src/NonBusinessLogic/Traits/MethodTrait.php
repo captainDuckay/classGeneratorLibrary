@@ -23,12 +23,10 @@ trait MethodTrait {
 
 	/**
 	 * @param string $name
-	 * @return MethodTrait
 	 */
-	protected function setName(string $name): MethodTrait
+	protected function setName(string $name): void
 	{
 		$this->name = $name;
-		return $this;
 	}
 
 
