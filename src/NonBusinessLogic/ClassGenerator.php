@@ -53,6 +53,8 @@ class ClassGenerator extends GenericClassGenerator {
 <?php
 declare(strict_types=1);
 
+{$this->generateNamespaceString()}
+
 /**
  * Class {$this->getName()}
 {$this->generateNamespacePackage()}

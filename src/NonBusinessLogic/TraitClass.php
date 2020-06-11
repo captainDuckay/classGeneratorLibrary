@@ -48,6 +48,8 @@ class TraitClass extends GenericClassGenerator {
 <?php
 declare(strict_types=1);
 
+{$this->generateNamespaceString()}
+
 /**
  * Trait {$this->getName()}
 {$this->generateNamespacePackage()}

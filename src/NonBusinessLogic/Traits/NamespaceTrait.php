@@ -43,4 +43,15 @@ trait NamespaceTrait
         }
     }
 
+	/**
+	 * @return string
+	 */
+    public function generateNamespaceString():string {
+		if ($this->getNamespace() != '') {
+			return "namespace " . $this->getNamespace() . ';';
+		} else {
+			return '';
+		}
+	}
+
 }
