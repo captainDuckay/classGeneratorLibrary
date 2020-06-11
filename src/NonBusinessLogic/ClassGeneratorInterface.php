@@ -18,4 +18,14 @@ interface ClassGeneratorInterface
      */
     public function generateFileContent(): string;
 
+	/**
+	 * @return string
+	 */
+    public function generateMethodString(): string;
+
+	/**
+	 * @return string
+	 */
+    public function generatePropertyString(): string;
+
 }

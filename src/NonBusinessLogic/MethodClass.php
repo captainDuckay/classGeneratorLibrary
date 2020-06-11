@@ -7,45 +7,22 @@ namespace classGeneratorLibrary\NonBusinessLogic;
 
 
 use classGeneratorLibrary\NonBusinessLogic\Traits\ContentsTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\MethodTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\ReturnType;
 use classGeneratorLibrary\NonBusinessLogic\Traits\StaticTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\VisibilityTrait;
 
 /**
- * Class MethodGenerator
+ * Class MethodClass
  * @package NonBusinessLogic
  */
-class MethodGenerator
+class MethodClass
 {
 
-	use VisibilityTrait;
-	use StaticTrait;
-	use ReturnType;
-	use ContentsTrait;
-
-	/** @var string */
-	private string $name;
+	use MethodTrait;
 
 	/**
-	 * @return string
-	 */
-	public function getName(): string
-	{
-		return $this->name;
-	}
-
-	/**
-	 * @param string $name
-	 * @return MethodGenerator
-	 */
-	protected function setName(string $name): MethodGenerator
-	{
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
-	 * MethodGenerator constructor.
+	 * MethodClass constructor.
 	 * @param string $visibilityState
 	 * @param bool $isStatic
 	 * @param string $name

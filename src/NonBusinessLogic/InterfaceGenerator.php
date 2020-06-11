@@ -12,12 +12,12 @@ class InterfaceGenerator extends GenericClassGenerator
 {
 	/**
 	 * InterfaceGenerator constructor.
-	 * @param string $name
-	 * @param string $path
-	 * @param string $namespace
-	 * @param MethodGenerator[] $methods
-	 * @param string $extending
-	 * @param array $implementations
+	 * @param string        $name
+	 * @param string        $path
+	 * @param string        $namespace
+	 * @param MethodClass[] $methods
+	 * @param string        $extending
+	 * @param array         $implementations
 	 */
 	public function __construct(
 		string $name,

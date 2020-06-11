@@ -10,91 +10,156 @@ use classGeneratorLibrary\NonBusinessLogic\Traits\ExtendsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\ImplementsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\NamespaceTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\PathTrait;
-use classGeneratorLibrary\NonBusinessLogic\Traits\ReturnType;
-use classGeneratorLibrary\NonBusinessLogic\Traits\VisibilityTrait;
 
 /**
  * Class GenericClassGenerator
  * @package NonBusinessLogic
  */
-abstract class GenericClassGenerator implements ClassGeneratorInterface
-{
+abstract class GenericClassGenerator implements ClassGeneratorInterface {
 
-    use NamespaceTrait;
-    use PathTrait;
-    use ImplementsTrait;
-    use ExtendsTrait;
-    use VisibilityTrait;
-    use ReturnType;
+	use NamespaceTrait;
+	use PathTrait;
+	use ImplementsTrait;
+	use ExtendsTrait;
 
-    /** @var string */
-    private string $name;
+	/** @var string */
+	private string $name;
 
-    /** @var string */
-    private string $contents;
+	/** @var string */
+	private string $contents;
 
-    /** @var MethodGenerator[] */
-    private array $methods;
+	/**
+	 * @var PropertyClass[]
+	 */
+	private array $properties;
 
-    /**
-     * @return MethodGenerator[]
-     */
-    public function getMethods(): array
-    {
-        return $this->methods;
-    }
+	/**
+	 * @var MethodClass[]
+	 */
+	private array $methods;
 
-    /**
-     * @param MethodGenerator[] $methods
-     * @return GenericClassGenerator
-     */
-    public function setMethods(array $methods): GenericClassGenerator
-    {
-        $this->methods = $methods;
-        return $this;
-    }
+	/**
+	 * @return string
+	 */
+	public function getContents(): string {
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+		return $this->contents;
+	}
 
-    /**
-     * @param string $name
-     * @return GenericClassGenerator
-     */
-    protected function setName(string $name): GenericClassGenerator
-    {
-        $this->name = $name;
-        return $this;
-    }
+	/**
+	 * @param string $contents
+	 */
+	public function setContents( string $contents ): void {
 
-    /**
-     * MethodGenerator constructor.
-     * @param string $name
-     * @param string $path
-     * @param string $namespace
-     * @param array $methods
-     * @param string $extending
-     * @param string[] $implementations
-     */
-    public function __construct(
-        string $name,
-        string $path,
-        string $namespace,
-        array $methods,
-        string $extending,
-        array $implementations
-    ) {
-        $this->setName($name);
-        $this->setMethods($methods);
-        $this->setNamespace($namespace);
-        $this->setPath($path);
-        $this->setExtension($extending);
-        $this->setImplementations($implementations);
-    }
+		$this->contents = $contents;
+	}
+
+	/**
+	 * @return PropertyClass[]
+	 */
+	public function getProperties(): array {
+
+		return $this->properties;
+	}
+
+	/**
+	 * @param PropertyClass[] $properties
+	 */
+	public function setProperties( array $properties ): void {
+
+		$this->properties = $properties;
+	}
+
+	/**
+	 * @return MethodClass[]
+	 */
+	public function getMethods(): array {
+
+		return $this->methods;
+	}
+
+	/**
+	 * @param MethodClass[] $methods
+	 */
+	public function setMethods( array $methods ): void {
+
+		$this->methods = $methods;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName(): string {
+
+		return $this->name;
+	}
+
+	/**
+	 * @param string $name
+	 *
+	 * @return GenericClassGenerator
+	 */
+	protected function setName( string $name ): GenericClassGenerator {
+
+		$this->name = $name;
+		return $this;
+	}
+
+	/**
+	 * MethodClass constructor.
+	 *
+	 * @param string          $name
+	 * @param string          $path
+	 * @param string          $namespace
+	 * @param MethodClass[]   $methods
+	 * @param string          $extending
+	 * @param string[]        $implementations
+	 * @param PropertyClass[] $properties
+	 */
+	public function __construct(
+		string $name,
+		string $path,
+		string $namespace,
+		array $methods,
+		string $extending,
+		array $implementations,
+		array $properties
+	) {
+
+		$this->setName( $name );
+		$this->setMethods( $methods );
+		$this->setNamespace( $namespace );
+		$this->setPath( $path );
+		$this->setExtension( $extending );
+		$this->setImplementations( $implementations );
+		$this->setProperties( $properties );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function generateMethodString(): string {
+
+		$returnString = '';
+		foreach( $this->getMethods() as $method ) {
+			$returnString .= $method->generateGenericClassString() . PHP_EOL;
+		}
+		return $returnString;
+
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function generatePropertyString(): string {
+
+		$returnString = '';
+		foreach( $this->getMethods() as $method ) {
+			$returnString .= $method->generateGenericClassString() . PHP_EOL;
+		}
+		return $returnString;
+
+	}
+
 
 }

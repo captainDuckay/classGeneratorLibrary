@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
+
 namespace classGeneratorLibrary\NonBusinessLogic;
 
-use classGeneratorLibrary\NonBusinessLogic\Traits\AbstractTrait;
-
 /**
- * Class InterfaceGenerator
+ * Class TraitClass
  * @package NonBusinessLogic
  */
-class ClassGenerator extends GenericClassGenerator {
-
-	use AbstractTrait;
+class TraitClass extends GenericClassGenerator {
 
 	/**
-	 * ClassGenerator constructor.
+	 * TraitClass constructor.
 	 *
 	 * @inheritDoc
 	 */
@@ -26,10 +23,8 @@ class ClassGenerator extends GenericClassGenerator {
 		array $methods,
 		string $extending,
 		array $implementations,
-		array $properties,
-		bool $isAbstract
+		array $properties
 	) {
-
 		parent::__construct(
 			$name,
 			$path,
@@ -39,7 +34,6 @@ class ClassGenerator extends GenericClassGenerator {
 			$implementations,
 			$properties
 		);
-		$this->setAbstract( $isAbstract );
 	}
 
 	/**
@@ -52,11 +46,10 @@ class ClassGenerator extends GenericClassGenerator {
 declare(strict_types=1);
 
 /**
- * Class {$this->getName()}
+ * Trait {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-{$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString(
-		)} {$this->generateImplementsString()}
+class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
 	{$this->generatePropertyString()}
 	
@@ -64,5 +57,4 @@ declare(strict_types=1);
 }
 EOD;
 	}
-
 }

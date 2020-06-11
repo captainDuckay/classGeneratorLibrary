@@ -6,42 +6,19 @@ declare(strict_types=1);
 namespace classGeneratorLibrary\NonBusinessLogic;
 
 
-use classGeneratorLibrary\NonBusinessLogic\Traits\ReturnType;
-use classGeneratorLibrary\NonBusinessLogic\Traits\VisibilityTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\PropertyTrait;
 
 /**
- * Class MethodGenerator
+ * Class MethodClass
  * @package NonBusinessLogic
  */
-class PropertyGenerator
+class PropertyClass
 {
 
-	use VisibilityTrait;
-	use ReturnType;
-
-	/** @var string */
-	private string $name;
+	use PropertyTrait;
 
 	/**
-	 * @return string
-	 */
-	public function getName(): string
-	{
-		return $this->name;
-	}
-
-	/**
-	 * @param string $name
-	 * @return PropertyGenerator
-	 */
-	protected function setName(string $name): PropertyGenerator
-	{
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
-	 * MethodGenerator constructor.
+	 * MethodClass constructor.
 	 * @param string $visibilityState
 	 * @param string $name
 	 * @param string $returnTypeName
