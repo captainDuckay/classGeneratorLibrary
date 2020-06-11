@@ -54,7 +54,7 @@ declare(strict_types=1);
  * Trait {$this->getName()}
 {$this->generateNamespacePackage()}
  */
-class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
+trait {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
 	{$this->generateUsesString()}
 	
