@@ -42,7 +42,7 @@ class UseClass {
 	 */
 	public function generateUseString() {
 
-		return "use \\{$this->getTrait()->getNamespace()}\\{$this->getTrait()->getName()};";
+		return "use \\{$this->getTrait()->getNamespace()}\\{$this->getTrait()->getName()}Trait;";
 
 	}
 
