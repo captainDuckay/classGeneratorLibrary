@@ -10,22 +10,26 @@ namespace classGeneratorLibrary\NonBusinessLogic;
  * Interface ClassGeneratorInterface
  * @package NonBusinessLogic
  */
-interface ClassGeneratorInterface
-{
-
-    /**
-     * @return string
-     */
-    public function generateFileContent(): string;
+interface ClassGeneratorInterface {
 
 	/**
 	 * @return string
 	 */
-    public function generateMethodsString(): string;
+	public function generateFileContent(): string;
 
 	/**
 	 * @return string
 	 */
-    public function generatePropertiesString(): string;
+	public function generateMethodsString(): string;
+
+	/**
+	 * @return string
+	 */
+	public function generatePropertiesString(): string;
+
+	/**
+	 * @return string
+	 */
+	public function generateUsesString(): string;
 
 }
