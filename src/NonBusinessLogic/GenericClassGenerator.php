@@ -10,6 +10,7 @@ use classGeneratorLibrary\NonBusinessLogic\Traits\ExtendsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\ImplementsTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\NamespaceTrait;
 use classGeneratorLibrary\NonBusinessLogic\Traits\PathTrait;
+use classGeneratorLibrary\NonBusinessLogic\Traits\UseTrait;
 
 /**
  * Class GenericClassGenerator
@@ -87,6 +88,27 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 	}
 
 	/**
+	 * @var UseClass[]
+	 */
+	private array $uses;
+
+	/**
+	 * @return UseClass[]
+	 */
+	public function getUses(): array {
+
+		return $this->uses;
+	}
+
+	/**
+	 * @param UseClass[] $uses
+	 */
+	public function setUses( array $uses ): void {
+
+		$this->uses = $uses;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getName(): string {
@@ -138,7 +160,7 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function generateMethodString(): string {
+	public function generateMethodsString(): string {
 
 		$returnString = '';
 		foreach( $this->getMethods() as $method ) {
@@ -151,7 +173,7 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function generatePropertyString(): string {
+	public function generatePropertiesString(): string {
 
 		$returnString = '';
 		foreach( $this->getProperties() as $method ) {
@@ -161,5 +183,16 @@ abstract class GenericClassGenerator implements ClassGeneratorInterface {
 
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function generateUsesString(): string {
 
+		$returnString = '';
+		foreach( $this->getProperties() as $method ) {
+			$returnString .= $method->generateGenericPropertyString() . PHP_EOL;
+		}
+		return $returnString;
+
+	}
 }

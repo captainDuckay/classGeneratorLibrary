@@ -21,11 +21,11 @@ interface ClassGeneratorInterface
 	/**
 	 * @return string
 	 */
-    public function generateMethodString(): string;
+    public function generateMethodsString(): string;
 
 	/**
 	 * @return string
 	 */
-    public function generatePropertyString(): string;
+    public function generatePropertiesString(): string;
 
 }

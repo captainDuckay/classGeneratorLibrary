@@ -51,20 +51,13 @@ declare(strict_types=1);
  */
 class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplementsString()}
 {
-	{$this->generatePropertyString()}
+	{$this->generateUsesString()}
 	
-	{$this->generateMethodString()}
+	{$this->generatePropertiesString()}
+	
+	{$this->generateMethodsString()}
 }
 EOD;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function generateUseString() {
-
-		return "{$this->getNamespace()}\\{$this->getName()}";
-
 	}
 
 }

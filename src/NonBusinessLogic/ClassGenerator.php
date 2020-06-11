@@ -58,9 +58,11 @@ declare(strict_types=1);
 {$this->generateAbstractString()} class {$this->getName()} {$this->generateExtendsString(
 		)} {$this->generateImplementsString()}
 {
-	{$this->generatePropertyString()}
+	{$this->generateUsesString()}
 	
-	{$this->generateMethodString()}
+	{$this->generatePropertiesString()}
+	
+	{$this->generateMethodsString()}
 }
 EOD;
 	}
