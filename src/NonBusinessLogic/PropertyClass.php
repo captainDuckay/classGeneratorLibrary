@@ -52,7 +52,6 @@ private {$this->getConvertedReturnType()} \${$this->getName()};
     }
 string;
 
-
 	}
 
 }

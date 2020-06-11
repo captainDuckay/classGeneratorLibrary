@@ -57,4 +57,14 @@ class {$this->getName()} {$this->generateExtendsString()} {$this->generateImplem
 }
 EOD;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function generateUseString() {
+
+		return "{$this->getNamespace()}\\{$this->getName()}";
+
+	}
+
 }
